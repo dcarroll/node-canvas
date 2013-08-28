@@ -5,7 +5,6 @@ dd      = require("./lib/dd")
 express = require("express")
 log     = require("./lib/logger").init("service.web")
 stdweb  = require("./lib/stdweb")
-store   = require("./lib/store").init("#{process.env.COUCHDB_URL}/mc-service")
 
 app = stdweb("mc-service")
 
@@ -29,31 +28,6 @@ app.get "/", (req, res) ->
 
 app.get "/stats", (req, res) ->
   res.render "stats/index.jade"
-
-app.get "/devices", (req, res) ->
-  store.list "model", (err, models) ->
-    models.sort (a, b) -> a.name.localeCompare(b.name)
-    res.render "devices/index.jade", models:models
-
-app.get "/devices/:model.json", (req, res) ->
-  redis.smembers "devices:#{req.params.model}", (err, devices) ->
-    res.json devices.reduce(((ax, device) -> ax.push(id:device, model:req.params.model); ax), [])
-
-app.get "/devices.json", (req, res) ->
-  store.list "model", (err, models) ->
-    models_by_name = {}
-    models_by_name[model.name] = { name:model.name, inputs:model.inputs, outputs:model.outputs } for model in models
-    console.log "models_by_name", JSON.stringify(models_by_name)
-    redis.zrange "devices", 0, -1, (err, devices) ->
-      async.map devices, ((device, cb) ->
-        redis.get "device:#{device}:model", (err, model) ->
-          cb null, id:device, model:models_by_name[model]),
-        (err, devices) ->
-          res.json devices
-
-app.post "/message/:id", (req, res) ->
-  mqtt.publish "device.#{req.params.id}", JSON.stringify(dd.merge(req.body, id:process.env.ID)), (err) ->
-    res.send "ok"
 
 app.get "/rules", (req, res) ->
   res.render "rules/index.jade"
@@ -114,7 +88,7 @@ app.get "/models.json", (req, res) ->
 
 app.post "/canvas", (req, res) ->
   log.start "canvas.login", (log) ->
-    
+
     [signature, encoded_envelope] = req.body.signed_request.split(".")
     check = crypto.createHmac("sha256", process.env.CANVAS_SECRET).update(encoded_envelope).digest("base64")
     if check is signature
