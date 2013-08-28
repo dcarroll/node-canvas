@@ -1,0 +1,24 @@
+extends ../layout
+
+block script
+
+  script(src="/js/devices.js")
+
+block content
+
+  each model in models
+    .container.model(id="model-#{model.name}", data-name=model.name)
+      h3= model.name
+      h4= model.description
+
+      table.table.table-striped.table-bordered#devices(data-outputs=outputs(model), data-inputs=inputs(model))
+        thead
+          tr
+            th
+            th ID
+            each type, name in model.outputs
+              th= name
+            each type, name in model.inputs
+              th= name
+            th Last Message
+        tbody
