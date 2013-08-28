@@ -114,7 +114,7 @@ app.get "/models.json", (req, res) ->
 
 app.post "/canvas", (req, res) ->
   log.start "canvas.login", (log) ->
-    log.debug "Hey man"
+    
     [signature, encoded_envelope] = req.body.signed_request.split(".")
     check = crypto.createHmac("sha256", process.env.CANVAS_SECRET).update(encoded_envelope).digest("base64")
     if check is signature
