@@ -43,6 +43,7 @@ app.get("/stats", function(req, res) {
 });
 
 app.get("/signed-request", function(req, res) {
+  console.log("Signed Request: \n" + JSON.stringify(res.locals.salesforce, null, 4));
   return res.render("signed-request.ejs", { locals: { signedRequestJson: res.locals.salesforce }});
 });
 
