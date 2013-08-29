@@ -168,7 +168,7 @@ app.get("/service/mqtt", auth_required, function(req, res) {
 });
 
 log.start("listen", function(log) {
-  port = "8001";
+  port = process.env.PORT || "8001";
   return app.start(port, function() {
     console.log(port);
     return log.success({
