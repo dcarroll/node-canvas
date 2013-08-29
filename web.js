@@ -16,7 +16,7 @@ app.use(express.cookieSession({
 app.use(express["static"]("" + __dirname + "/public"));
 
 app.use(function(req, res, next) {
-  res.locals.navigation = function(name, path) {
+/*  res.locals.navigation = function(name, path) {
     var klass;
     klass = req.path === path ? "active" : "";
     return "<li class=\"" + klass + "\"><a href=\"" + path + "\">" + name + "</a></li>";
@@ -27,6 +27,7 @@ app.use(function(req, res, next) {
   res.locals.inputs = function(model) {
     return dd.keys(model.inputs).join(",");
   };
+  */
   res.locals.salesforce = req.session.salesforce;
   return next();
 });
@@ -39,105 +40,9 @@ app.get("/", function(req, res) {
   return res.redirect("/signed-request");
 });
 
-app.get("/stats", function(req, res) {
-  return res.render("stats/index.jade");
-});
-
 app.get("/signed-request", function(req, res) {
-
   var sr = JSON.stringify(res.locals.salesforce);
-  console.log(sr);
   return res.render("signed-request.ejs", { locals: { signedRequestJson: sr }});
-
-});
-
-app.get("/rules", function(req, res) {
-  return res.render("rules/index.jade");
-});
-
-app.get("/rules/new", function(req, res) {
-  return res.render("rules/new.jade");
-});
-
-app.post("/rules", function(req, res) {
-  var rule;
-  rule = {
-    condition: {
-      device: req.body["condition.device"],
-      output: req.body["condition.output"],
-      compare: req.body["condition.compare"],
-      value: req.body["condition.value"]
-    },
-    action: {
-      device: req.body["action.device"],
-      input: req.body["action.input"],
-      value: req.body["action.value"]
-    }
-  };
-  if (rule.action.device === "salesforce") {
-    rule.action.salesforce = req.session.salesforce;
-  }
-  return store.create("rule", rule, function(err) {
-    return res.redirect("/rules");
-  });
-});
-
-app.get("/rules/:id/delete", function(req, res) {
-  return store["delete"]("rule", req.params.id, function(err, rule) {
-    return res.redirect("/rules");
-  });
-});
-
-app.get("/rules.json", function(req, res) {
-  return store.list("rule", function(err, rules) {
-    return res.json(rules);
-  });
-});
-
-app.get("/models", function(req, res) {
-  return res.render("models/index.jade");
-});
-
-app.get("/models/new", function(req, res) {
-  return res.render("models/new.jade");
-});
-
-app.post("/models", function(req, res) {
-  return store.create("model", dd.merge(JSON.parse(req.body.body), {
-    name: req.body.name
-  }), function(err, model) {
-    return res.redirect("/models");
-  });
-});
-
-app.get("/models/:id/edit", function(req, res) {
-  return store.fetch("model", req.params.id, function(err, model) {
-    return res.render("models/edit.jade", {
-      model: model
-    });
-  });
-});
-
-app.post("/models/:id", function(req, res) {
-  return store.fetch("model", req.params.id, function(err, model) {
-    return store.update("model", req.params.id, dd.merge(JSON.parse(req.body.body), {
-      name: req.body.name
-    }), function(err, model) {
-      return res.redirect("/models");
-    });
-  });
-});
-
-app.get("/models/:id/delete", function(req, res) {
-  return store["delete"]("model", req.params.id, function(err, model) {
-    return res.redirect("/models");
-  });
-});
-
-app.get("/models.json", function(req, res) {
-  return store.list("model", function(err, models) {
-    return res.json(models);
-  });
 });
 
 app.post("/canvas", function(req, res) {
@@ -149,7 +54,6 @@ app.post("/canvas", function(req, res) {
       envelope = JSON.parse(new Buffer(encoded_envelope, "base64").toString("ascii"));
       req.session.salesforce = envelope;
       res.redirect("/signed-request");
-      console.log(JSON.stringify(envelope, null, 4));
       return log.success({
         user: envelope.context.user.userName
       });
@@ -158,18 +62,6 @@ app.post("/canvas", function(req, res) {
       return log.failure();
     }
   });
-});
-
-auth_required = express.basicAuth(function(user, pass) {
-  if (process.env.HTTP_PASSWORD) {
-    return pass === process.env.HTTP_PASSWORD;
-  } else {
-    return true;
-  }
-});
-
-app.get("/service/mqtt", auth_required, function(req, res) {
-  return res.send(process.env.MQTT_URL);
 });
 
 log.start("listen", function(log) {
