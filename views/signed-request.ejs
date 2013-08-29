@@ -11,15 +11,10 @@
         <script type="text/javascript" src="js/chatter-talk.js"></script>
 
         <script>
-            if (self === top) {
-                // Not in Iframe
-                alert("This canvas app must be included within an iframe");
-            }
 
             Sfdc.canvas(function() {
                 var sr = <%- signedRequestJson %>
                 // Save the token
-                alert(sr.client);
                 Sfdc.canvas.oauth.token(sr.oauthToken);
                 var photoUri = sr.context.user.profileThumbnailUrl +  "?oauth_token=" + sr.oauthToken;
                 Sfdc.canvas.byId('fullname').innerHTML = sr.context.user.fullName + "[" + sr.context.user.email + "]";
@@ -62,13 +57,12 @@
                     <h2>Below is some information received in the Canvas Request:</h2>
                     <div class="well" id="canvas-request">
                         <div class="row">
+                            <div class="col-md-2">
+                                <img id='profile' border="0" src="" />
+                            </div>
                             <div class="col-md-3">
-                                <label><b>Name: </b></label>
                                 <span id='fullname'></span>
                             </div>
-                        </div>
-                        <div>
-                            <img id='profile' border="0" src="" />
                         </div>
                         <div class="row">
                             <div class="col-md-3">
