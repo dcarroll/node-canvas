@@ -2,7 +2,9 @@
     <head>
         <title>Force.com Canvas Node.js Quick Start</title>
 
-        <link rel="stylesheet" type="text/css" href="css/canvas.css" />
+        <link rel="stylesheet" href="/css/bootstrap.css"/>
+        <link rel="stylesheet" href="/css/bootstrap-responsive.min.css"/>
+        <link rel="stylesheet" href="/css/service.css"/>
 
         <script type="text/javascript" src="js/canvas-all.js"></script>
         <script type="text/javascript" src="js/json2.js"></script>
@@ -36,54 +38,71 @@
         </script>
     </head>
     <body>
-    <div id="page">
-        <div id="content">
-            <div id="header">
-                <h1 >Hello <span id='fullname'></span>!</h1>
-                <h2>Welcome to the Force.com Canvas Java Quick Start Template!</h2>
-            </div>
 
-            <div id="canvas-content">
-                <h1>Canvas Request</h1>
-                <h2>Below is some information received in the Canvas Request:</h2>
-                <div id="canvas-request">
-                    <table border="0" width="100%">
-                        <tr>
-                            <td></td>
-                            <td><b>First Name: </b><span id='firstname'></span></td>
-                            <td><b>Last Name: </b><span id='lastname'></span></td>
-                        </tr>
-                        <tr>
-                            <td><img id='profile' border="0" src="" /></td>
-                            <td><b>Username: </b><span id='username'></span></td>
-                            <td colspan="2"><b>Email Address: </b><span id='email'></span></td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                            <td colspan="3"><b>Company: </b><span id='company'></span></td>
-                        </tr>
-                    </table>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+              <div class="navbar-header">
+                <div class="navbar-brand">
+                    Canvas Action
                 </div>
-                <div id="canvas-chatter">
-                    <table border="0" width="100%">
-                        <tr>
-                            <td width="15%"><b>Post to Chatter:&nbsp</b></td>
-                            <td width="65%"><input id="speech-input-field" type="text" x-webkit-speech/></td>
-                            <td width="6%"><button id="chatter-submit" type="submit"/></td>
-                            <td width="10%"><span id="status" style="color:green"></span></td>
-                        </tr>
-                    </table>
+                <ul class="nav"></ul>
+              </div>
+            </div>
+        </div>
+        <div class="jumbotron">
+            <div class="container">
+                <div>
+                    <div>
+                        Welcome to the Force.com Canvas Node.js Quick Start Template!
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div >
+                    <h2>Below is some information received in the Canvas Request:</h2>
+                    <div class="well" id="canvas-request">
+                        <div>
+                            <img id='profile' border="0" src="" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label><b>First Name: </b></label>
+                                <span id='firstname'></span>
+                            </div>
+                            <div class="col-md-3">
+                                <label><b>Last Name: </b></label>
+                                <span id='lastname'></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label><b>Username: </b></label>
+                                <span id='username'></span>
+                            </div>
+                            <div class="col-md-3">
+                                <label><b>Email Address: </b></label>
+                                <span id='email'></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label><b>Company: </b></label>
+                                <span id='company'></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="well" id="canvas-chatter">
+                        <div class="form-inline" role="form">
+                        <label for="speech-input-field">
+                            <b>
+                                Post to Chatter:&nbsp
+                            </b>
+                        </label>
+                        <input id="speech-input-field" type="text" x-webkit-speech placeholder="Share something" />
+                        <button class="btn btn-default"  id="chatter-submit" type="submit"/>Post</button>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div id="footercont">
-            <div id="footerleft">
-                <p>Powered By: <a title="Heroku" href="#" onclick="window.top.location.href='http://www.heroku.com'"><strong>Heroku</strong></a></p>
-            </div>
-            <div id="footerright">
-                <p>Salesforce: <a title="Safe Harbor" href="http://www.salesforce.com/company/investor/safe_harbor.jsp"><strong>SafeHarbor</strong></a></p>
-            </div>
-        </div>    </div>
-
-    </body>
+</body>
