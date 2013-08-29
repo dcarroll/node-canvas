@@ -42,6 +42,10 @@ app.get("/stats", function(req, res) {
   return res.render("stats/index.jade");
 });
 
+app.get("/signed-request", function(req, res) {
+  return res.render("signed-request.ejs", { locals: { signedRequestJson: req.session.salesforce }});
+});
+
 app.get("/rules", function(req, res) {
   return res.render("rules/index.jade");
 });
@@ -139,8 +143,9 @@ app.post("/canvas", function(req, res) {
     if (check === signature) {
       envelope = JSON.parse(new Buffer(encoded_envelope, "base64").toString("ascii"));
       req.session.salesforce = envelope;
-      res.redirect("/");
+      res.redirect("/signed-request");
       return log.success({
+        console.log(JSON.stringify(envelope, null, 4));
         user: envelope.context.user.userName
       });
     } else {
@@ -163,7 +168,9 @@ app.get("/service/mqtt", auth_required, function(req, res) {
 });
 
 log.start("listen", function(log) {
-  return app.start(function(port) {
+  port = "8001";
+  return app.start(port, function() {
+    console.log(port);
     return log.success({
       port: port
     });
