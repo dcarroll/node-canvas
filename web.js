@@ -7,6 +7,7 @@ express = require("express");
 log = require("./lib/logger").init("service.web");
 stdweb = require("./lib/stdweb");
 app = stdweb("mc-service");
+var querystring = require("querystring");
 
 app.use(express.cookieSession({
   secret: process.env.SESSION_SECRET || "e3dka"
@@ -43,8 +44,11 @@ app.get("/stats", function(req, res) {
 });
 
 app.get("/signed-request", function(req, res) {
-  console.log("Signed Request: \n" + JSON.stringify(res.locals.salesforce, null, 4));
-  return res.render("signed-request.ejs", { locals: { signedRequestJson: res.locals.salesforce }});
+
+  var sr = JSON.stringify(res.locals.salesforce);
+  console.log(sr);
+  return res.render("signed-request.ejs", { locals: { signedRequestJson: sr }});
+
 });
 
 app.get("/rules", function(req, res) {

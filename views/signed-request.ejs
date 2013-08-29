@@ -15,8 +15,9 @@
             }
 
             Sfdc.canvas(function() {
-                var sr = JSON.parse('<%= signedRequestJson %>');
+                var sr = <%- signedRequestJson %>
                 // Save the token
+                alert(sr.client);
                 Sfdc.canvas.oauth.token(sr.oauthToken);
                 var photoUri = sr.context.user.profileThumbnailUrl +  "?oauth_token=" + sr.oauthToken;
                 Sfdc.canvas.byId('fullname').innerHTML = sr.context.user.fullName + "[" + sr.context.user.email + "]";
