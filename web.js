@@ -35,7 +35,7 @@ app.use(app.router);
 app.locals.pretty = true;
 
 app.get("/", function(req, res) {
-  return res.redirect("/stats");
+  return res.redirect("/signed-request");
 });
 
 app.get("/stats", function(req, res) {
@@ -144,8 +144,8 @@ app.post("/canvas", function(req, res) {
       envelope = JSON.parse(new Buffer(encoded_envelope, "base64").toString("ascii"));
       req.session.salesforce = envelope;
       res.redirect("/signed-request");
+      console.log(JSON.stringify(envelope, null, 4));
       return log.success({
-        console.log(JSON.stringify(envelope, null, 4));
         user: envelope.context.user.userName
       });
     } else {
