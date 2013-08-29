@@ -15,7 +15,7 @@
             }
 
             Sfdc.canvas(function() {
-                var sr = JSON.parse('<% signedRequestJson%>');
+                var sr = JSON.parse('<%= signedRequestJson %>');
                 // Save the token
                 Sfdc.canvas.oauth.token(sr.oauthToken);
                 var photoUri = sr.context.user.profileThumbnailUrl +  "?oauth_token=" + sr.oauthToken;
