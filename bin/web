@@ -7,7 +7,7 @@ COFFEE="$ROOT/node_modules/.bin/coffee"
 cd $ROOT
 
 if [ "${NODE_ENV}" == "production" ]; then
-  exec $COFFEE web.coffee
+  exec node web.js
 else
   exec nodemon -w . web.coffee
 fi
