@@ -37,7 +37,7 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
               <div class="navbar-header">
-                <div class="navbar-brand">
+                <div class="navbar-brand" style="margin-right: 40px;">
                     Canvas Action
                 </div>
                 <ul class="nav"></ul>
@@ -47,47 +47,51 @@
         <div class="jumbotron">
             <div class="container">
                 <div>
-                    <div>
+                    <p class="lead">
                         Welcome to the Force.com Canvas Node.js Quick Start Template!
-                    </div>
+                    </p>
                 </div>
             </div>
             <div class="container">
                 <div >
-                    <h2>Below is some information received in the Canvas Request:</h2>
-                    <div class="well" id="canvas-request">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img id='profile' border="0" src="" />
+                    <p class="lead">
+                        Below is some information received in the Canvas Request:
+                    </p>
+                    <div style="max-height: 400px; max-width: 370px; overflow: scroll;">
+                        <div class="well" id="canvas-request">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img id='profile' border="0" src="" />
+                                </div>
+                                <div class="col-md-3">
+                                    <span id='fullname'></span>
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                <span id='fullname'></span>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label><b>First Name: </b></label>
+                                    <span id='firstname'></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label><b>Last Name: </b></label>
+                                    <span id='lastname'></span>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label><b>First Name: </b></label>
-                                <span id='firstname'></span>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label><b>Username: </b></label>
+                                    <span id='username'></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label><b>Email Address: </b></label>
+                                    <span id='email'></span>
+                                </div>
                             </div>
-                            <div class="col-md-3">
-                                <label><b>Last Name: </b></label>
-                                <span id='lastname'></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label><b>Username: </b></label>
-                                <span id='username'></span>
-                            </div>
-                            <div class="col-md-3">
-                                <label><b>Email Address: </b></label>
-                                <span id='email'></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                                <label><b>Company: </b></label>
-                                <span id='company'></span>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label><b>Company: </b></label>
+                                    <span id='company'></span>
+                                </div>
                             </div>
                         </div>
                     </div>
