@@ -4,6 +4,7 @@
   "dependencies": {
     "async": "0.2.x",
     "express": "3.0.x",
+    "xtend": "2.0.6", 
     "faye": "0.8.9",
     "nodemon": "0.7.x",
     "node-salesforce": "0.6.x",
