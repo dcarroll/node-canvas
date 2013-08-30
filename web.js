@@ -36,7 +36,7 @@ app.get("/signed-request", function(req, res) {
   } else {
     sr = JSON.stringify(res.locals.salesforce);
   }
-  console.log(sr);
+  console.log(JSON.stringify(res.locals.salesforce, null, 4));
   return res.render("signed-request.ejs", { locals: { signedRequestJson: sr }});
 });
 
