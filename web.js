@@ -1,4 +1,4 @@
-var app, async, auth_required, crypto, dd, express, log, stdweb;
+var app, async, auth_required, crypto, dd, dc, express, log, stdweb;
 
 async = require("async");
 crypto = require("crypto");
@@ -8,6 +8,7 @@ log = require("./lib/logger").init("service.web");
 stdweb = require("./lib/stdweb");
 app = stdweb("mc-service");
 var querystring = require("querystring");
+dc = require("./lib/dc");
 
 app.use(express.cookieSession({
   secret: process.env.SESSION_SECRET || "e3dka"
@@ -31,8 +32,11 @@ app.get("/", function(req, res) {
 app.get("/signed-request", function(req, res) {
   var sr;
   if (typeof res.locals.salesforce === 'undefined') {
+    // Need actual orgId, UserId, instance and oauth token or sessionId
     // This was not started from a canvas app, we will use a static JSON
     // object to simulate a signed request that has been verified
+    console.log("Getting static request");
+    sr = dc.getStaticRequest();
   } else {
     sr = JSON.stringify(res.locals.salesforce);
   }

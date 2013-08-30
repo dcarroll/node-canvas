@@ -1,0 +1,84 @@
+{
+     "context": {
+         "application": {
+             "name": "Node App",
+             "version": "1.0",
+             "namespace": null,
+             "authType": "SIGNED_REQUEST",
+             "developerName": "Node_App",
+             "referenceId": "09Hx00000004CFe",
+             "applicationId": "06Px00000004GGJ",
+             "canvasUrl": "https://japandevkeynote.herokuapp.com/canvas"
+         },
+         "user": {
+             "language": "en_US",
+             "timeZone": "America/Los_Angeles",
+             "userName": "daveify@mailinator.com",
+             "locale": "en_US",
+             "fullName": "Dave Carroll",
+             "userId": "005x0000000U8XYAA0",
+             "email": "daveify@mailinator.com",
+             "userType": "STANDARD",
+             "profileId": "00ex0000000O4rR",
+             "isDefaultNetwork": true,
+             "profilePhotoUrl": "https://c.prerelna1.content.pre.force.com/profilephoto/729x00000000acX/F",
+             "networkId": null,
+             "currencyISOCode": "USD",
+             "firstName": "Dave",
+             "lastName": "Carroll",
+             "siteUrl": null,
+             "profileThumbnailUrl": "https://c.prerelna1.content.pre.force.com/profilephoto/729x00000000acX/T",
+             "roleId": null,
+             "siteUrlPrefix": null,
+             "accessibilityModeEnabled": false
+         },
+         "organization": {
+             "name": "salesforce.com",
+             "namespacePrefix": null,
+             "organizationId": "00Dx00000009oNeEAI",
+             "currencyIsoCode": "USD",
+             "multicurrencyEnabled": false
+         },
+         "environment": {
+             "parameters": {},
+             "dimensions": {
+                 "width": "800px",
+                 "height": "900px",
+                 "maxHeight": "2000px",
+                 "maxWidth": "1000px"
+             },
+             "locationUrl": "https://prerelna1.pre.salesforce.com/_ui/platform/connect/ui/CanvasPreviewerUi?retURL=%2Fui%2Fsetup%2FSetup%3Fsetupid%3DStudio&setupid=CanvasPreviewerUi",
+             "displayLocation": null,
+             "uiTheme": "Theme3",
+             "version": {
+                 "api": "29.0",
+                 "season": "WINTER"
+             }
+         },
+         "links": {
+             "loginUrl": "https://prerellogin.pre.salesforce.com/",
+             "chatterFeedItemsUrl": "/services/data/v29.0/chatter/feed-items",
+             "chatterFeedsUrl": "/services/data/v29.0/chatter/feeds",
+             "chatterGroupsUrl": "/services/data/v29.0/chatter/groups",
+             "chatterUsersUrl": "/services/data/v29.0/chatter/users",
+             "enterpriseUrl": "/services/Soap/c/29.0/00Dx00000009oNe",
+             "metadataUrl": "/services/Soap/m/29.0/00Dx00000009oNe",
+             "partnerUrl": "/services/Soap/u/29.0/00Dx00000009oNe",
+             "queryUrl": "/services/data/v29.0/query/",
+             "recentItemsUrl": "/services/data/v29.0/recent/",
+             "restUrl": "/services/data/v29.0/",
+             "searchUrl": "/services/data/v29.0/search/",
+             "sobjectUrl": "/services/data/v29.0/sobjects/",
+             "userUrl": "/005x0000000U8XYAA0"
+         }
+     },
+     "algorithm": "HMACSHA256",
+     "userId": "005x0000000U8XY",
+     "client": {
+         "instanceId": "_:Node_App:",
+         "targetOrigin": "https://prerelna1.pre.salesforce.com",
+         "instanceUrl": "https://prerelna1.pre.salesforce.com",
+         "oauthToken": "00Dx00000009oNe!AQUAQKa81SNd6GE_zBgvsH7YL4aFSPIiz31s1XIyl_VGz0Pwf2stX.S_sibTRfSEIzaakxcPtI0wdtfbEcXaMtXi.hJPQWXw"
+     },
+     "issuedAt": -784652479
+ }
