@@ -16,18 +16,6 @@ app.use(express.cookieSession({
 app.use(express["static"]("" + __dirname + "/public"));
 
 app.use(function(req, res, next) {
-/*  res.locals.navigation = function(name, path) {
-    var klass;
-    klass = req.path === path ? "active" : "";
-    return "<li class=\"" + klass + "\"><a href=\"" + path + "\">" + name + "</a></li>";
-  };
-  res.locals.outputs = function(model) {
-    return dd.keys(model.outputs).join(",");
-  };
-  res.locals.inputs = function(model) {
-    return dd.keys(model.inputs).join(",");
-  };
-  */
   res.locals.salesforce = req.session.salesforce;
   return next();
 });
@@ -41,7 +29,14 @@ app.get("/", function(req, res) {
 });
 
 app.get("/signed-request", function(req, res) {
-  var sr = JSON.stringify(res.locals.salesforce);
+  var sr;
+  if (typeof res.locals.salesforce === 'undefined') {
+    // This was not started from a canvas app, we will use a static JSON
+    // object to simulate a signed request that has been verified
+  } else {
+    sr = JSON.stringify(res.locals.salesforce);
+  }
+  console.log(sr);
   return res.render("signed-request.ejs", { locals: { signedRequestJson: sr }});
 });
 
