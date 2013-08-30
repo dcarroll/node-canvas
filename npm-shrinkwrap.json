@@ -92,6 +92,40 @@
         }
       }
     },
+    "xtend": {
+      "version": "2.0.6",
+      "from": "xtend@",
+      "resolved": "https://registry.npmjs.org/xtend/-/xtend-2.0.6.tgz",
+      "dependencies": {
+        "is-object": {
+          "version": "0.1.2",
+          "from": "is-object@~0.1.2",
+          "resolved": "https://registry.npmjs.org/is-object/-/is-object-0.1.2.tgz"
+        },
+        "object-keys": {
+          "version": "0.2.0",
+          "from": "object-keys@~0.2.0",
+          "resolved": "https://registry.npmjs.org/object-keys/-/object-keys-0.2.0.tgz",
+          "dependencies": {
+            "foreach": {
+              "version": "2.0.4",
+              "from": "foreach@~2.0.1",
+              "resolved": "https://registry.npmjs.org/foreach/-/foreach-2.0.4.tgz"
+            },
+            "indexof": {
+              "version": "0.0.1",
+              "from": "indexof@~0.0.1",
+              "resolved": "https://registry.npmjs.org/indexof/-/indexof-0.0.1.tgz"
+            },
+            "is": {
+              "version": "0.2.6",
+              "from": "is@~0.2.6",
+              "resolved": "https://registry.npmjs.org/is/-/is-0.2.6.tgz"
+            }
+          }
+        }
+      }
+    },
     "faye": {
       "version": "0.8.9",
       "from": "faye@",
